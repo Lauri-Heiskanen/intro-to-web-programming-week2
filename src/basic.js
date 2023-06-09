@@ -18,20 +18,20 @@ function initializeCode() {
       username: "matti",
       email: "matti@emt.fi",
       address: "hehkatu 1",
-      admin: "X",
+      admin: "X"
     },
     {
       username: "make",
       email: "make@emt.fi",
       address: "hehkatu 2",
-      admin: "-",
+      admin: "-"
     },
     {
       username: "meira",
       email: "meira@emt.fi",
       address: "hehkatu 3",
-      admin: "X",
-    },
+      admin: "X"
+    }
   ];
   initializeUserTable();
   reloadUserTable();
@@ -55,14 +55,14 @@ function userFormSubmit(event) {
       admin: isAdmin,
       image: URL.createObjectURL(
         document.getElementById("input-image").files[0]
-      ),
+      )
     };
   } else {
     newUser = {
       username: formData.get("username"),
       email: formData.get("email"),
       address: formData.get("address"),
-      admin: isAdmin,
+      admin: isAdmin
     };
   }
 
@@ -72,6 +72,9 @@ function userFormSubmit(event) {
       userExisted = true;
       for (const key in newUser) {
         user[key] = newUser[key];
+      }
+      if (!("image" in newUser)) {
+        delete user.image;
       }
     }
   }
@@ -98,13 +101,13 @@ function addEntryToTable(newUser) {
   const newUserRow = document.createElement("tr");
   for (const key in newUser) {
     if (key === "image") {
-      //const newData = document.createElement("td");
+      const newData = document.createElement("td");
       const img = document.createElement("img");
       img.src = newUser["image"];
       img.height = 64;
       img.width = 64;
-      newUserRow.appendChild(img);
-      //newUserRow.appendChild(newData.appendChild(img));
+      //newUserRow.appendChild(img);
+      newUserRow.appendChild(newData.appendChild(img));
     } else {
       const newData = document.createElement("td");
       newData.innerHTML = newUser[key];
