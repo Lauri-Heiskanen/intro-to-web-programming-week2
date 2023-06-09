@@ -226,16 +226,17 @@ function addEntryToTable(newUser) {
   var newUserRow = document.createElement("tr");
   for (var key in newUser) {
     if (key === "image") {
-      var newData = document.createElement("td");
+      //const newData = document.createElement("td");
       var img = document.createElement("img");
       img.src = newUser["image"];
       img.height = 64;
       img.width = 64;
-      newUserRow.appendChild(newData.appendChild(img));
+      newUserRow.appendChild(img);
+      //newUserRow.appendChild(newData.appendChild(img));
     } else {
-      var _newData = document.createElement("td");
-      _newData.innerHTML = newUser[key];
-      newUserRow.appendChild(_newData);
+      var newData = document.createElement("td");
+      newData.innerHTML = newUser[key];
+      newUserRow.appendChild(newData);
     }
   }
   userTable.appendChild(newUserRow);
@@ -268,7 +269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37993" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39435" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
