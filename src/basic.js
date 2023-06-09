@@ -14,15 +14,31 @@ function initializeCode() {
   const emptyTableButton = document.getElementById("empty-table");
   submitDataButton.addEventListener("click", userFormSubmit);
   emptyTableButton.addEventListener("click", resetUsers);
+  users = [];
+  users.push({
+    username: "matti",
+    email: "matti@emt.fi",
+    address: "hehkatu 1",
+    admin: "X",
+  });
+  users.push({
+    username: "make",
+    email: "make@emt.fi",
+    address: "hehkatu 2",
+    admin: "-",
+  });
+  users.push({
+    username: "meira",
+    email: "meira@emt.fi",
+    address: "hehkatu 3",
+    admin: "X",
+  });
+  reloadUserTable();
 }
 
 function userFormSubmit(event) {
   event.preventDefault();
   let formData = new FormData(document.getElementById("user-form"));
-  addUser(formData);
-}
-
-function addUser(formData) {
   let isAdmin;
   if (formData.get("admin") == null) {
     isAdmin = "-";
@@ -33,7 +49,7 @@ function addUser(formData) {
     username: formData.get("username"),
     email: formData.get("email"),
     address: formData.get("address"),
-    admin: isAdmin
+    admin: isAdmin,
   };
   users.push(newUser);
   reloadUserTable();
