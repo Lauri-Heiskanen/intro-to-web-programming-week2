@@ -190,6 +190,9 @@ function userFormSubmit(event) {
         for (var key in newUser) {
           user[key] = newUser[key];
         }
+        if (!("image" in newUser)) {
+          delete user.image;
+        }
       }
     }
   } catch (err) {
@@ -226,17 +229,17 @@ function addEntryToTable(newUser) {
   var newUserRow = document.createElement("tr");
   for (var key in newUser) {
     if (key === "image") {
-      //const newData = document.createElement("td");
+      var newData = document.createElement("td");
       var img = document.createElement("img");
       img.src = newUser["image"];
       img.height = 64;
       img.width = 64;
-      newUserRow.appendChild(img);
-      //newUserRow.appendChild(newData.appendChild(img));
+      //newUserRow.appendChild(img);
+      newUserRow.appendChild(newData.appendChild(img));
     } else {
-      var newData = document.createElement("td");
-      newData.innerHTML = newUser[key];
-      newUserRow.appendChild(newData);
+      var _newData = document.createElement("td");
+      _newData.innerHTML = newUser[key];
+      newUserRow.appendChild(_newData);
     }
   }
   userTable.appendChild(newUserRow);
@@ -269,7 +272,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39435" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46043" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
