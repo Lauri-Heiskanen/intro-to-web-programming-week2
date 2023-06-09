@@ -98,12 +98,13 @@ function addEntryToTable(newUser) {
   const newUserRow = document.createElement("tr");
   for (const key in newUser) {
     if (key === "image") {
-      const newData = document.createElement("td");
+      //const newData = document.createElement("td");
       const img = document.createElement("img");
       img.src = newUser["image"];
       img.height = 64;
       img.width = 64;
-      newUserRow.appendChild(newData.appendChild(img));
+      newUserRow.appendChild(img);
+      //newUserRow.appendChild(newData.appendChild(img));
     } else {
       const newData = document.createElement("td");
       newData.innerHTML = newUser[key];
